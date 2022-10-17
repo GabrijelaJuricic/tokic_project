@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { Modal } from "react-bootstrap";
-import { useRecoilState } from "recoil";
-import { pageState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { pageState, buttonDisabledState } from "../atoms";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -13,6 +13,16 @@ import "./Modal.css";
 
 const MyModal = (props) => {
   const [page, setPage] = useRecoilState(pageState);
+  const isDisabled = useRecoilValue(buttonDisabledState);
+
+  // === Dummy data ===
+  const stepInstructions = [
+    "Korak 1. Odaberite proizvođača vašeg vozila",
+    "Korak 2. Odaberite jednu ili više usluga",
+    "Korak 3. Vaši kontakt podaci",
+    "Korak 4. Pregled i potvrda vašeg odabira",
+    "",
+  ];
 
   const prevPageHandler = () => {
     setPage((currPage) => {
@@ -57,12 +67,15 @@ const MyModal = (props) => {
           Konfigurator servisa
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>{pageDisplay()}</Modal.Body>
+      <Modal.Body>
+        <h5>{stepInstructions[page]}</h5>
+        {pageDisplay()}
+      </Modal.Body>
       <Modal.Footer>
         <Button hidden={page < 1 || page >= 4} onClick={prevPageHandler}>
           Nazad
         </Button>
-        <Button onClick={nextPageHandler}>
+        <Button onClick={nextPageHandler} disabled={isDisabled}>
           {page === 4 ? "Pošalji" : "Dalje"}
         </Button>
       </Modal.Footer>

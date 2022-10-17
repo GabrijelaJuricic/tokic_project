@@ -9,3 +9,13 @@ export const pageState = atom({
   key: "pageState",
   default: 0,
 });
+
+export const brandItemState = atom({
+  key: "brandItemState",
+  default: { checkedBrand: "" },
+});
+
+export const buttonDisabledState = atom({
+  key: "buttonDisabledState",
+  default: true,
+});
