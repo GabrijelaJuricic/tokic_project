@@ -2,8 +2,19 @@ import { Container, Navbar, Card, Button } from "react-bootstrap";
 import MyImage from "./assets/logo.svg";
 import { Fragment } from "react";
 import "./App.css";
+import MyModal from "./Components/Modal";
+import { pageState, showModalState } from "./atoms";
+import { useRecoilState } from "recoil";
 
 const App = () => {
+  const [showModal, setShowModal] = useRecoilState(showModalState);
+  const [, setPage] = useRecoilState(pageState);
+
+  const openModalHandler = () => {
+    setShowModal(true);
+    setPage(0);
+  };
+
   return (
     <Fragment>
       <Navbar className="navbar-custom">
@@ -26,9 +37,12 @@ const App = () => {
       <Card className="card-custom">
         <Card.Body>
           <Card.Text>Pokreni konfigurator servisa i izračunaj cijenu</Card.Text>
-          <Button variant="secondary">Pokreni</Button>
+          <Button variant="secondary" onClick={openModalHandler}>
+            Pokreni
+          </Button>
         </Card.Body>
       </Card>
+      <MyModal show={showModal} onHide={() => setShowModal(false)} />
     </Fragment>
   );
 };
