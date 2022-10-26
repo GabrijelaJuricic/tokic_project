@@ -1,13 +1,12 @@
 import React from "react";
+import { useRecoilState } from "recoil";
+import { brandItemState } from "../atoms";
 import { Form, Row, Col, FormCheck } from "react-bootstrap";
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
-import { useRecoilState } from "recoil";
-import { brandItemState, buttonDisabledState } from "../atoms";
 
 const Step1 = () => {
   const [brandItem, setBrandItem] = useRecoilState(brandItemState);
-  const [, setIsDisabled] = useRecoilState(buttonDisabledState);
 
   const { checkedBrand } = brandItem;
 
@@ -33,9 +32,6 @@ const Step1 = () => {
       ...prevState,
       brand: e.target.value,
     }));
-    if (brandItem) {
-      setIsDisabled(false);
-    }
   };
 
   return (
@@ -46,16 +42,14 @@ const Step1 = () => {
             <Col key={brand.id} lg={6}>
               <ul>
                 <li style={{ listStyle: "none" }}>
-                  <FormCheck>
-                    <FormCheckLabel>
-                      <FormCheckInput
-                        type="radio"
-                        value={brand.value}
-                        onChange={handleChange}
-                        checked={checkedBrand === brand.value}
-                      />
-                      {brand.name}
-                    </FormCheckLabel>
+                  <FormCheck
+                    type="radio"
+                    value={brand.value}
+                    onChange={handleChange}
+                    checked={checkedBrand === brand.value}
+                  >
+                    <FormCheckInput type="radio" />
+                    <FormCheckLabel>{brand.name}</FormCheckLabel>
                   </FormCheck>
                 </li>
               </ul>

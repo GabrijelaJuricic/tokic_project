@@ -1,0 +1,7 @@
+.custom-text-styling {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 15vh;
+  text-align: center;
+}

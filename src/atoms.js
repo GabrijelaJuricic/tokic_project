@@ -15,7 +15,7 @@ export const brandItemState = atom({
   default: { checkedBrand: "" },
 });
 
-export const buttonDisabledState = atom({
-  key: "buttonDisabledState",
-  default: true,
+export const selectedServicesState = atom({
+  key: "selectedServicesState",
+  default: [{ selectedItems: "" }],
 });

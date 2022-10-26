@@ -1,0 +1,13 @@
+.custom-header {
+  background-color: #dbdee2a5;
+}
+.custom-title {
+  font-weight: 600;
+  color: #044791;
+}
+.custom-body {
+  font-size: 15px;
+}
+.custom-body > p {
+  font-size: 20px;
+}
