@@ -30,7 +30,7 @@ const Step1 = () => {
 
     setBrandItem((prevState) => ({
       ...prevState,
-      brand: e.target.value,
+      checkedBrand: e.target.value,
     }));
   };
 
@@ -42,13 +42,13 @@ const Step1 = () => {
             <Col key={brand.id} lg={6}>
               <ul>
                 <li style={{ listStyle: "none" }}>
-                  <FormCheck
-                    type="radio"
-                    value={brand.value}
-                    onChange={handleChange}
-                    checked={checkedBrand === brand.value}
-                  >
-                    <FormCheckInput type="radio" />
+                  <FormCheck type="radio">
+                    <FormCheckInput
+                      type="radio"
+                      value={brand.value}
+                      onChange={handleChange}
+                      checked={checkedBrand === brand.value}
+                    />
                     <FormCheckLabel>{brand.name}</FormCheckLabel>
                   </FormCheck>
                 </li>

@@ -1,7 +1,8 @@
 .custom-text-styling {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 15vh;
+  padding-bottom: 15px;
   text-align: center;
 }
