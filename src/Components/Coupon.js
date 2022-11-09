@@ -1,16 +1,42 @@
-import React from "react";
-import Stack from "react-bootstrap/Stack";
-import { FormControl, Button, Col, Row } from "react-bootstrap";
+import { React, useState } from "react";
+import {
+  FormControl,
+  Button,
+  Col,
+  Row,
+  FormGroup,
+  Form,
+  Stack,
+} from "react-bootstrap";
 import { useRecoilState } from "recoil";
 import { openCouponFieldState } from "../atoms";
 
 import "./Coupon.css";
 
 const Coupon = () => {
+  const [visibleInputField, setVisibleInputField] = useState(true);
+  const [couponSuccessMessage, setCouponSuccessMessage] = useState();
+  const [couponErrorMessage, setCouponErrorMessage] = useState();
+  const [couponInputValue, setCouponInputValue] = useState("");
   const [couponOpen, setCouponOpen] = useRecoilState(openCouponFieldState);
 
   const openCouponFieldHandler = () => {
     setCouponOpen(true);
+  };
+
+  const handleCouponSubmit = (e) => {
+    e.preventDefault();
+
+    if (couponInputValue === "Tokić123") {
+      setCouponSuccessMessage("Hvala vam, unijeli ste ispravan kod!");
+      setCouponErrorMessage("");
+      setVisibleInputField(false);
+    } else {
+      setCouponErrorMessage("Neispravan kod, pokušajte ponovno.");
+      setCouponSuccessMessage("");
+      setVisibleInputField(true);
+    }
+    console.log(couponInputValue);
   };
 
   return (
@@ -23,26 +49,40 @@ const Coupon = () => {
         </div>
       )}
       {couponOpen && (
-        <Row>
-          <Stack direction="horizontal" gap={3} className="mx-3 my-3">
-            <Col md={{ span: 3, offset: 7 }}>
-              <FormControl
-                className="me-auto"
-                placeholder="Unesite kod kupona"
-              />
-            </Col>
-            <Col>
-              <Button variant="secondary">Primijeni</Button>
-            </Col>
-          </Stack>
-        </Row>
+        <Form onSubmit={handleCouponSubmit}>
+          {visibleInputField ? (
+            <FormGroup>
+              <Stack direction="horizontal" gap={3}>
+                <Col md={{ offset: 7 }}>
+                  <FormControl
+                    type="text"
+                    value={couponInputValue}
+                    placeholder="Unesite kod kupona"
+                    onChange={(e) => setCouponInputValue(e.target.value)}
+                  />
+                </Col>
+                <Button type="submit">Primijeni</Button>
+              </Stack>
+            </FormGroup>
+          ) : null}
+
+          {couponSuccessMessage && (
+            <div className="message">
+              <p className="coupon-success-message">{couponSuccessMessage}</p>
+              <p className="coupon-calculation-message">OSNOVICA:</p>
+              <p className="coupon-calculation-message">Popust (30%):</p>
+            </div>
+          )}
+
+          {couponErrorMessage && (
+            <div className="message">
+              <p className="coupon-error-message">{couponErrorMessage}</p>
+            </div>
+          )}
+        </Form>
       )}
-      <Row>
-        <Col md={{ offset: 10 }}>
-          <span>
-            <strong>UKUPNO:</strong>
-          </span>
-        </Col>
+      <Row className="mt-2">
+        <Col md={{ offset: 9 }}>UKUPNO:</Col>
       </Row>
     </>
   );

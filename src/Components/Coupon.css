@@ -3,9 +3,30 @@
   width: 100%;
   justify-content: end;
   list-style: none;
-  padding: 10px;
+  padding: 5px;
 }
 .closed-coupon > a {
   text-decoration: none;
   padding: inherit;
+}
+/* --- Message --- */
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+.coupon-success-message {
+  font-size: small;
+  color: green;
+  margin-bottom: 10px;
+}
+.coupon-error-message {
+  font-size: small;
+  color: red;
+  margin-bottom: 10px;
+}
+.coupon_calculation_message {
+  margin-bottom: 10px;
 }

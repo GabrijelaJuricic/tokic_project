@@ -37,7 +37,7 @@ const App = () => {
       <Card className="card-custom">
         <Card.Body>
           <Card.Text>Pokreni konfigurator servisa i izračunaj cijenu</Card.Text>
-          <Button variant="secondary" onClick={openModalHandler}>
+          <Button variant="primary" onClick={openModalHandler}>
             Pokreni
           </Button>
         </Card.Body>
