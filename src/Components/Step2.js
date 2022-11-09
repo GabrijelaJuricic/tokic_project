@@ -1,16 +1,9 @@
 import React from "react";
-import { selectedServicesState } from "../atoms";
-import { useRecoilState } from "recoil";
-import { Col, Form, FormCheck, Row } from "react-bootstrap";
-import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
-import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
+import { Col, Form, Row } from "react-bootstrap";
+import ServiceItems from "./ServiceItems";
+import Coupon from "./Coupon";
 
 const Step2 = () => {
-  const [selectedServices, setSelectedServices] = useRecoilState(
-    selectedServicesState
-  );
-  const { selectedItems } = selectedServices;
-
   // === Dummy data ===
   var serviceItems = [
     { serviceItem: "Zamjena ulja i filtera", price: 500, id: 66 },
@@ -21,45 +14,28 @@ const Step2 = () => {
     { serviceItem: "Zamjena ulja u kočnicama", price: 229, id: 13 },
   ];
 
-  const changeHandler = (e) => {
-    const target = e.target;
-    const name = target.name;
-
-    setSelectedServices((prevState) => ({
-      ...prevState,
-      name,
-    }));
-    console.log(selectedServices);
-  };
-
   return (
-    <Form>
-      <Row className="mt-4">
-        {serviceItems.map((item) => {
-          return (
-            <Col key={item.id} lg={6}>
-              <ul>
-                <li style={{ listStyle: "none" }}>
-                  <FormCheck
+    <>
+      <Form>
+        <Row className="mt-4">
+          {serviceItems.map((item) => {
+            return (
+              <Col key={item.id} lg={6}>
+                <ul>
+                  <ServiceItems
                     type="checkbox"
                     id={item.id}
                     name={item.serviceItem}
                     price={item.price}
-                    onChange={changeHandler}
-                    checked={selectedItems === item.serviceItem}
-                  >
-                    <FormCheckInput type="checkbox" />
-                    <FormCheckLabel>
-                      {item.serviceItem} {`(${item.price} kn)`}
-                    </FormCheckLabel>
-                  </FormCheck>
-                </li>
-              </ul>
-            </Col>
-          );
-        })}
-      </Row>
-    </Form>
+                  ></ServiceItems>
+                </ul>
+              </Col>
+            );
+          })}
+        </Row>
+      </Form>
+      <Coupon></Coupon>
+    </>
   );
 };
 

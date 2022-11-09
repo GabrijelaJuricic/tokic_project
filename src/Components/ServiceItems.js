@@ -5,20 +5,12 @@ import { FormCheck } from "react-bootstrap";
 import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 
-const ServiceItem = (props) => {
+const ServiceItems = (props) => {
   const [selectedServices, setSelectedServices] = useRecoilState(
     selectedServicesState
   );
 
-  const changeHandler = (e) => {
-    console.log(e.target.checked);
-
-    setSelectedServices((prevState) => ({
-      ...prevState,
-      checkedService: e.target.checked,
-    }));
-    console.log(selectedServices);
-  };
+  const changeHandler = () => {};
 
   return (
     <div>
@@ -26,12 +18,12 @@ const ServiceItem = (props) => {
         <FormCheck type="checkbox">
           <FormCheckInput
             type="checkbox"
-            value={props.value}
+            value={props.name}
             onChange={changeHandler}
             price={props.price}
           />
           <FormCheckLabel htmlFor={props.id}>
-            {props.value} {`(${props.price} kn)`}
+            {props.name} {`(${props.price} kn)`}
           </FormCheckLabel>
         </FormCheck>
       </li>
@@ -39,4 +31,4 @@ const ServiceItem = (props) => {
   );
 };
 
-export default ServiceItem;
+export default ServiceItems;
