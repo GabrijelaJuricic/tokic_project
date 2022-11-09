@@ -1,0 +1,11 @@
+.closed-coupon {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  list-style: none;
+  padding: 10px;
+}
+.closed-coupon > a {
+  text-decoration: none;
+  padding: inherit;
+}
