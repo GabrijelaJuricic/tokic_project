@@ -17,7 +17,7 @@ export const brandItemState = atom({
 
 export const selectedServicesState = atom({
   key: "selectedServicesState",
-  default: [{ selectedItems: "" }],
+  default: [],
 });
 
 export const openCouponFieldState = atom({

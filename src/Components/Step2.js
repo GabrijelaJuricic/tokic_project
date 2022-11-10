@@ -23,8 +23,6 @@ const Step2 = () => {
               <Col key={item.id} lg={6}>
                 <ul>
                   <ServiceItems
-                    type="checkbox"
-                    id={item.id}
                     name={item.serviceItem}
                     price={item.price}
                   ></ServiceItems>

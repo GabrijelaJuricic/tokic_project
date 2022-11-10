@@ -10,16 +10,24 @@ const ServiceItems = (props) => {
     selectedServicesState
   );
 
-  const changeHandler = () => {};
+  const changeHandler = () => {
+    setSelectedServices((prevState) => {
+      return [...prevState, props.name];
+    });
+    selectedServices.filter((service) => {
+      return service.checked;
+    });
+  };
 
   return (
     <div>
       <li style={{ listStyle: "none" }}>
-        <FormCheck type="checkbox">
+        <FormCheck>
           <FormCheckInput
             type="checkbox"
             value={props.name}
             onChange={changeHandler}
+            // checked={}
             price={props.price}
           />
           <FormCheckLabel htmlFor={props.id}>
