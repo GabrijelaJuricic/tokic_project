@@ -12,7 +12,7 @@ export const pageState = atom({
 
 export const brandItemState = atom({
   key: "brandItemState",
-  default: { checkedBrand: "" },
+  default: "",
 });
 
 export const selectedServicesState = atom({

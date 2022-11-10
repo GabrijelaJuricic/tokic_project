@@ -18,12 +18,12 @@
   margin-right: 15px;
 }
 .coupon-success-message {
-  font-size: small;
+  font-size: 14px;
   color: green;
   margin-bottom: 10px;
 }
 .coupon-error-message {
-  font-size: small;
+  font-size: 14px;
   color: red;
   margin-bottom: 10px;
 }

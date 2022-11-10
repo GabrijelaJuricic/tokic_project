@@ -1,15 +1,8 @@
 import React from "react";
-import { useRecoilState } from "recoil";
-import { brandItemState } from "../atoms";
-import { Form, Row, Col, FormCheck } from "react-bootstrap";
-import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
-import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
+import { Row, Col, Form } from "react-bootstrap";
+import BrandItem from "./BrandItem";
 
 const Step1 = () => {
-  const [brandItem, setBrandItem] = useRecoilState(brandItemState);
-
-  const { checkedBrand } = brandItem;
-
   // --- Dummy data --- //
   const carBrand = [
     { name: "Peugeot", id: 1, value: "peugeot" },
@@ -25,15 +18,6 @@ const Step1 = () => {
     { name: "Toyota", id: 11, value: "toyota" },
   ];
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
-
-    setBrandItem((prevState) => ({
-      ...prevState,
-      checkedBrand: e.target.value,
-    }));
-  };
-
   return (
     <Form>
       <Row className="mt-4">
@@ -41,17 +25,7 @@ const Step1 = () => {
           return (
             <Col key={brand.id} lg={6}>
               <ul>
-                <li style={{ listStyle: "none" }}>
-                  <FormCheck type="radio">
-                    <FormCheckInput
-                      type="radio"
-                      value={brand.value}
-                      onChange={handleChange}
-                      checked={checkedBrand === brand.value}
-                    />
-                    <FormCheckLabel>{brand.name}</FormCheckLabel>
-                  </FormCheck>
-                </li>
+                <BrandItem value={brand.name} />
               </ul>
             </Col>
           );
