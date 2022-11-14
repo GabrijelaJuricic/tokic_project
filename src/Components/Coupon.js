@@ -81,9 +81,6 @@ const Coupon = () => {
           )}
         </Form>
       )}
-      <Row className="mt-2">
-        <Col md={{ offset: 9 }}>UKUPNO:</Col>
-      </Row>
     </>
   );
 };

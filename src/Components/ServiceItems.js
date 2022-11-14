@@ -21,6 +21,7 @@ const ServiceItems = (props) => {
     } else {
       setSelectedServices(selectedServices.filter((e) => e !== value));
     }
+    checked ? props.onValue(props.price) : props.onValue(props.price * -1.0);
   };
 
   return (

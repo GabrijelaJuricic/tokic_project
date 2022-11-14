@@ -24,3 +24,8 @@ export const openCouponFieldState = atom({
   key: "openCouponFieldState",
   default: false,
 });
+
+export const totalAmountState = atom({
+  key: "totalAmountState",
+  default: 0,
+});

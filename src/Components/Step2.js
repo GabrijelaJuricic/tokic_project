@@ -1,9 +1,13 @@
 import React from "react";
 import { Col, Form, Row } from "react-bootstrap";
+import { totalAmountState } from "../atoms";
+import { useRecoilState } from "recoil";
 import ServiceItems from "./ServiceItems";
 import Coupon from "./Coupon";
 
 const Step2 = () => {
+  const [totalAmount, setTotalAmount] = useRecoilState(totalAmountState);
+
   // === Dummy data ===
   var serviceItems = [
     { serviceItem: "Zamjena ulja i filtera", price: 500, id: 66 },
@@ -13,6 +17,10 @@ const Step2 = () => {
     { serviceItem: "Balansiranje guma", price: 50, id: 50 },
     { serviceItem: "Zamjena ulja u kočnicama", price: 229, id: 13 },
   ];
+
+  const addTotalAmountHandler = (amount) => {
+    setTotalAmount(totalAmount + amount);
+  };
 
   return (
     <>
@@ -26,6 +34,7 @@ const Step2 = () => {
                     name={item.serviceItem}
                     price={item.price}
                     id={item.id}
+                    onValue={addTotalAmountHandler}
                   ></ServiceItems>
                 </ul>
               </Col>
@@ -34,6 +43,10 @@ const Step2 = () => {
         </Row>
       </Form>
       <Coupon></Coupon>
+
+      <Row className="mt-2">
+        <Col md={{ offset: 10 }}>{`UKUPNO: ${totalAmount} kn`}</Col>
+      </Row>
     </>
   );
 };
