@@ -25,6 +25,7 @@ const Step2 = () => {
                   <ServiceItems
                     name={item.serviceItem}
                     price={item.price}
+                    id={item.id}
                   ></ServiceItems>
                 </ul>
               </Col>

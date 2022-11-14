@@ -10,13 +10,17 @@ const ServiceItems = (props) => {
     selectedServicesState
   );
 
-  const changeHandler = () => {
-    setSelectedServices((prevState) => {
-      return [...prevState, props.name];
-    });
-    selectedServices.filter((service) => {
-      return service.checked;
-    });
+  const changeHandler = (e) => {
+    const value = e.target.value;
+    const checked = e.target.checked;
+    console.log(value, checked);
+    if (checked) {
+      setSelectedServices((prevState) => {
+        return [...prevState, value];
+      });
+    } else {
+      setSelectedServices(selectedServices.filter((e) => e !== value));
+    }
   };
 
   return (
@@ -26,9 +30,9 @@ const ServiceItems = (props) => {
           <FormCheckInput
             type="checkbox"
             value={props.name}
-            onChange={changeHandler}
-            // checked={}
             price={props.price}
+            id={props.id}
+            onChange={changeHandler}
           />
           <FormCheckLabel htmlFor={props.id}>
             {props.name} {`(${props.price} kn)`}
