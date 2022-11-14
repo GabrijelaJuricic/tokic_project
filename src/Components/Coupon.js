@@ -1,15 +1,14 @@
 import { React, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { openCouponFieldState, totalAmountState } from "../atoms";
 import {
   FormControl,
   Button,
   Col,
-  Row,
   FormGroup,
   Form,
   Stack,
 } from "react-bootstrap";
-import { useRecoilState } from "recoil";
-import { openCouponFieldState } from "../atoms";
 
 import "./Coupon.css";
 
@@ -19,6 +18,7 @@ const Coupon = () => {
   const [couponErrorMessage, setCouponErrorMessage] = useState();
   const [couponInputValue, setCouponInputValue] = useState("");
   const [couponOpen, setCouponOpen] = useRecoilState(openCouponFieldState);
+  const totalAmount = useRecoilValue(totalAmountState);
 
   const openCouponFieldHandler = () => {
     setCouponOpen(true);
@@ -36,7 +36,6 @@ const Coupon = () => {
       setCouponSuccessMessage("");
       setVisibleInputField(true);
     }
-    console.log(couponInputValue);
   };
 
   return (
@@ -69,8 +68,12 @@ const Coupon = () => {
           {couponSuccessMessage && (
             <div className="message">
               <p className="coupon-success-message">{couponSuccessMessage}</p>
-              <p className="coupon-calculation-message">OSNOVICA:</p>
-              <p className="coupon-calculation-message">Popust (30%):</p>
+              <p className="coupon-calculation-message">
+                OSNOVICA: {`${totalAmount.toFixed(2)} kn`}
+              </p>
+              <p className="coupon-calculation-message">
+                Popust (30%): {`${(totalAmount * -0.3).toFixed(2)} kn`}
+              </p>
             </div>
           )}
 

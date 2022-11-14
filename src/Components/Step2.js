@@ -1,7 +1,7 @@
 import React from "react";
-import { Col, Form, Row } from "react-bootstrap";
-import { totalAmountState } from "../atoms";
 import { useRecoilState } from "recoil";
+import { totalAmountState } from "../atoms";
+import { Col, Form, Row } from "react-bootstrap";
 import ServiceItems from "./ServiceItems";
 import Coupon from "./Coupon";
 
@@ -44,8 +44,8 @@ const Step2 = () => {
       </Form>
       <Coupon></Coupon>
 
-      <Row className="mt-2">
-        <Col md={{ offset: 10 }}>{`UKUPNO: ${totalAmount} kn`}</Col>
+      <Row className="m-3 justify-content-end">
+        UKUPNO: {`${totalAmount.toFixed(2)} kn`}
       </Row>
     </>
   );

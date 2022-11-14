@@ -13,7 +13,7 @@ const ServiceItems = (props) => {
   const changeHandler = (e) => {
     const value = e.target.value;
     const checked = e.target.checked;
-    console.log(value, checked);
+
     if (checked) {
       setSelectedServices((prevState) => {
         return [...prevState, value];
@@ -36,7 +36,7 @@ const ServiceItems = (props) => {
             onChange={changeHandler}
           />
           <FormCheckLabel htmlFor={props.id}>
-            {props.name} {`(${props.price} kn)`}
+            {props.name} {`(${props.price.toFixed(2)} kn)`}
           </FormCheckLabel>
         </FormCheck>
       </li>
