@@ -1,12 +1,13 @@
 import React from "react";
-import { useRecoilState } from "recoil";
-import { totalAmountState } from "../atoms";
 import { Col, Form, Row } from "react-bootstrap";
+import { totalAmountState, couponSuccessMessageState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 import ServiceItems from "./ServiceItems";
 import Coupon from "./Coupon";
 
 const Step2 = () => {
   const [totalAmount, setTotalAmount] = useRecoilState(totalAmountState);
+  const successMessage = useRecoilValue(couponSuccessMessageState);
 
   // === Dummy data ===
   var serviceItems = [
@@ -43,9 +44,11 @@ const Step2 = () => {
         </Row>
       </Form>
       <Coupon></Coupon>
-
       <Row className="m-3 justify-content-end">
-        UKUPNO: {`${totalAmount.toFixed(2)} kn`}
+        UKUPNO:{" "}
+        {successMessage
+          ? `${(totalAmount * 0.7).toFixed(2)} kn`
+          : `${totalAmount.toFixed(2)} kn`}
       </Row>
     </>
   );

@@ -23,7 +23,7 @@ const Step1 = () => {
       <Row className="mt-4">
         {carBrand.map((brand) => {
           return (
-            <Col key={brand.id} lg={6}>
+            <Col key={brand.id} md={4}>
               <ul>
                 <BrandItem value={brand.name} />
               </ul>

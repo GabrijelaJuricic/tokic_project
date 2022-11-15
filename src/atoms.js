@@ -20,6 +20,8 @@ export const selectedServicesState = atom({
   default: [],
 });
 
+// === Coupon states === //
+
 export const openCouponFieldState = atom({
   key: "openCouponFieldState",
   default: false,
@@ -28,4 +30,19 @@ export const openCouponFieldState = atom({
 export const totalAmountState = atom({
   key: "totalAmountState",
   default: 0,
+});
+
+export const couponInputValueState = atom({
+  key: "couponInputValueState",
+  default: "",
+});
+
+export const couponSuccessMessageState = atom({
+  key: "couponSuccessMessageState",
+  default: null,
+});
+
+export const couponErrorMessageState = atom({
+  key: "couponErrorMessageState",
+  default: null,
 });

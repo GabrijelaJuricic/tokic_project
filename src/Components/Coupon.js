@@ -1,6 +1,12 @@
 import { React, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { openCouponFieldState, totalAmountState } from "../atoms";
+import {
+  openCouponFieldState,
+  totalAmountState,
+  couponSuccessMessageState,
+  couponErrorMessageState,
+  couponInputValueState,
+} from "../atoms";
 import {
   FormControl,
   Button,
@@ -14,10 +20,16 @@ import "./Coupon.css";
 
 const Coupon = () => {
   const [visibleInputField, setVisibleInputField] = useState(true);
-  const [couponSuccessMessage, setCouponSuccessMessage] = useState();
-  const [couponErrorMessage, setCouponErrorMessage] = useState();
-  const [couponInputValue, setCouponInputValue] = useState("");
+  const [couponSuccessMessage, setCouponSuccessMessage] = useRecoilState(
+    couponSuccessMessageState
+  );
   const [couponOpen, setCouponOpen] = useRecoilState(openCouponFieldState);
+  const [couponErrorMessage, setCouponErrorMessage] = useRecoilState(
+    couponErrorMessageState
+  );
+  const [couponInputValue, setCouponInputValue] = useRecoilState(
+    couponInputValueState
+  );
   const totalAmount = useRecoilValue(totalAmountState);
 
   const openCouponFieldHandler = () => {
