@@ -46,3 +46,10 @@ export const couponErrorMessageState = atom({
   key: "couponErrorMessageState",
   default: null,
 });
+
+// === ===
+
+export const buttonDisabledState = atom({
+  key: "buttonDisabledState",
+  default: true,
+});

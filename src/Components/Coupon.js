@@ -6,6 +6,7 @@ import {
   couponSuccessMessageState,
   couponErrorMessageState,
   couponInputValueState,
+  buttonDisabledState,
 } from "../atoms";
 import {
   FormControl,
@@ -31,10 +32,17 @@ const Coupon = () => {
     couponInputValueState
   );
   const totalAmount = useRecoilValue(totalAmountState);
+  const [, setButtonDisabled] = useRecoilState(buttonDisabledState);
 
   const openCouponFieldHandler = () => {
     setCouponOpen(true);
   };
+
+  if (totalAmount === 0) {
+    setButtonDisabled(true);
+  } else {
+    setButtonDisabled(false);
+  }
 
   const handleCouponSubmit = (e) => {
     e.preventDefault();
