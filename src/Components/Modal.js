@@ -69,7 +69,7 @@ const MyModal = (props) => {
         <p>{stepInstructions[page]}</p>
         {pageDisplay()}
       </Modal.Body>
-      <Modal.Footer hidden={page === 2}>
+      <Modal.Footer>
         <Button hidden={page < 1 || page >= 4} onClick={prevPageHandler}>
           Nazad
         </Button>

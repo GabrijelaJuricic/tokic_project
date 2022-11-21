@@ -1,72 +1,90 @@
 import React from "react";
-import { useRecoilState } from "recoil";
-import { pageState } from "../atoms";
+import { useFormik } from "formik";
 import {
   Form,
   FormGroup,
   FormLabel,
   FormControl,
-  Button,
-  ModalFooter,
+  Row,
+  Col,
 } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
+import { contactFormSchema } from "../schemas";
+import "./Step3.css";
 
 const Step3 = () => {
-  // const [validated, setValidated] = useRecoilState(validatedStep3FormState);
-  const [, setPage] = useRecoilState(pageState);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-    }
-    // setValidated(true);
-    // if (validated) {
-    setPage((currPage) => {
-      return currPage + 1;
-    });
-  };
-
-  const backHandler = () => {
-    setPage((currPage) => {
-      return currPage - 1;
-    });
-  };
+  const { values, errors, touched, handleBlur, handleChange } = useFormik({
+    initialValues: {
+      name: "",
+      surname: "",
+      email: "",
+      remark: "",
+    },
+    validationSchema: contactFormSchema,
+  });
 
   return (
-    <Form
-      noValidate
-      // validated={validated}
-      onSubmit={handleSubmit}
-    >
+    <Form>
       <Row className="mb-3 mt-4">
         <FormGroup as={Col}>
           <FormLabel>Ime</FormLabel>
-          <FormControl required type="text" placeholder="Ime" />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <FormControl
+            id="name"
+            type="text"
+            placeholder="Ime"
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.name && touched.name ? "input-error" : ""}
+          />
+          {errors.name && touched.name && (
+            <p className="error">{errors.name}</p>
+          )}
         </FormGroup>
 
         <FormGroup as={Col}>
           <FormLabel>Prezime</FormLabel>
-          <FormControl required type="text" placeholder="Prezime" />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <FormControl
+            id="surname"
+            type="text"
+            placeholder="Prezime"
+            value={values.surname}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.surname && touched.surname ? "input-error" : ""}
+          />
+          {errors.surname && touched.surname && (
+            <p className="error">{errors.surname}</p>
+          )}
         </FormGroup>
       </Row>
 
       <FormGroup className="mb-3">
         <FormLabel>Email</FormLabel>
-        <FormControl required type="email" placeholder="Email" />
+        <FormControl
+          id="email"
+          type="email"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={errors.email && touched.email ? "input-error" : ""}
+        />
+        {errors.email && touched.email && (
+          <p className="error">{errors.email}</p>
+        )}
       </FormGroup>
 
       <Form.Group className="mb-3">
         <Form.Label>Napomena</Form.Label>
-        <Form.Control as="textarea" rows={3} placeholder="Napomena" />
+        <Form.Control
+          rows={3}
+          id="remark"
+          as="textarea"
+          placeholder="Napomena"
+          value={values.remark}
+          onChange={handleChange}
+        />
       </Form.Group>
-
-      <ModalFooter className="mt-5">
-        <Button onClick={backHandler}>Nazad</Button>
-        <Button type="submit">Dalje</Button>
-      </ModalFooter>
     </Form>
   );
 };

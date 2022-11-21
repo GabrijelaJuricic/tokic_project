@@ -1,0 +1,11 @@
+input.input-error,
+.input-error:focus {
+  border-color: rgba(220, 40, 40, 0.511);
+  box-shadow: 0px 0px 5px rgb(179, 63, 63);
+}
+
+.error {
+  font-size: 14px;
+  color: rgb(179, 63, 63);
+  margin-top: 10px;
+}
