@@ -1,19 +1,17 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { buttonDisabledState, pageState } from "../atoms";
 import { Modal } from "react-bootstrap";
+import { useRecoilState } from "recoil";
+import { pageState } from "../atoms";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
-
 import "./Modal.css";
 
 const MyModal = (props) => {
   const [page, setPage] = useRecoilState(pageState);
-  const buttonDisabled = useRecoilValue(buttonDisabledState);
 
   // === Dummy data ===
   const stepInstructions = [
@@ -30,14 +28,12 @@ const MyModal = (props) => {
     });
   };
   const nextPageHandler = () => {
-    if (page === 4) {
-      props.onHide();
-    } else if (page > 4) {
-      return setPage(0);
-    }
     setPage((currPage) => {
       return currPage + 1;
     });
+    if (page === stepInstructions.length - 1) {
+      props.onHide();
+    }
   };
 
   const pageDisplay = () => {
@@ -73,8 +69,8 @@ const MyModal = (props) => {
         <Button hidden={page < 1 || page >= 4} onClick={prevPageHandler}>
           Nazad
         </Button>
-        <Button disabled={buttonDisabled} onClick={nextPageHandler}>
-          {page === 4 ? "Pošalji" : "Dalje"}
+        <Button onClick={nextPageHandler}>
+          {page === stepInstructions.length - 1 ? "Završi" : "Dalje"}
         </Button>
       </Modal.Footer>
     </Modal>

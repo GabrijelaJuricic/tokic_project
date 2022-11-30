@@ -10,26 +10,27 @@ export const pageState = atom({
   default: 0,
 });
 
+//  === BrandItem ===
 export const brandItemState = atom({
   key: "brandItemState",
   default: "",
 });
 
+// === SelectedServices ===
 export const selectedServicesState = atom({
   key: "selectedServicesState",
   default: [],
 });
 
-// === Coupon states === //
-
+// === Coupon states ===
 export const openCouponFieldState = atom({
   key: "openCouponFieldState",
   default: false,
 });
 
-export const totalAmountState = atom({
-  key: "totalAmountState",
-  default: 0,
+export const visibleInputFieldState = atom({
+  key: "visibleInputFieldState",
+  default: true,
 });
 
 export const couponInputValueState = atom({
@@ -47,9 +48,7 @@ export const couponErrorMessageState = atom({
   default: null,
 });
 
-// === ===
-
-export const buttonDisabledState = atom({
-  key: "buttonDisabledState",
-  default: true,
+export const totalAmountState = atom({
+  key: "totalAmountState",
+  default: 0,
 });

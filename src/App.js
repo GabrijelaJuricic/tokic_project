@@ -1,10 +1,9 @@
-import { Container, Navbar, Card, Button, Row, Col } from "react-bootstrap";
+import { Navbar, Card, Button } from "react-bootstrap";
 import MyImage from "./assets/logo.svg";
-import { Fragment } from "react";
-import "./App.css";
-import MyModal from "./Components/Modal";
-import { pageState, showModalState } from "./atoms";
 import { useRecoilState } from "recoil";
+import { pageState, showModalState } from "./atoms";
+import MyModal from "./Components/Modal";
+import "./App.css";
 
 const App = () => {
   const [showModal, setShowModal] = useRecoilState(showModalState);
@@ -16,7 +15,7 @@ const App = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <Navbar className="navbar-custom">
         <Navbar.Brand href="https://www.tokic.hr/">
           <img
@@ -41,7 +40,7 @@ const App = () => {
         </Card.Body>
       </Card>
       <MyModal show={showModal} onHide={() => setShowModal(false)} />
-    </Fragment>
+    </>
   );
 };
 
